@@ -6,39 +6,20 @@
     <title>RegisCoin - Mining System</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body {
-            background: radial-gradient(circle at center, #0a192f 0%, #020c1b 100%);
-            color: #fff; min-height: 100vh; line-height: 1.6;
-        }
+        body { background: radial-gradient(circle at center, #0a192f 0%, #020c1b 100%); color: #fff; min-height: 100vh; line-height: 1.6; }
         
-        header {
-            background: rgba(2, 12, 27, 0.85); backdrop-filter: blur(10px);
-            border-bottom: 1px solid #00f2fe; position: sticky; top: 0; z-index: 100;
-            padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;
-        }
+        header { background: rgba(2, 12, 27, 0.85); backdrop-filter: blur(10px); border-bottom: 1px solid #00f2fe; position: sticky; top: 0; z-index: 100; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 22px; font-weight: bold; color: #00f2fe; text-shadow: 0 0 10px rgba(0, 242, 254, 0.5); }
         .nav-right { display: flex; align-items: center; gap: 15px; }
-        .about-btn {
-            color: #00f2fe; border: 1px solid #00f2fe; padding: 8px 16px; border-radius: 20px;
-            text-decoration: none; font-size: 14px; font-weight: 500; transition: 0.3s; background: transparent;
-        }
-        .about-btn:hover { background: rgba(0, 242, 254, 0.1); box-shadow: 0 0 15px rgba(0, 242, 254, 0.3); }
+        .about-btn { color: #00f2fe; border: 1px solid #00f2fe; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 14px; font-weight: 500; transition: 0.3s; background: transparent; }
+        .about-btn:hover { background: rgba(0, 242, 254, 0.1); }
         .logout-btn { background: #ff4a5a; color: #fff; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 14px; display: none; }
 
-        .auth-container {
-            max-width: 400px; margin: 40px auto; background: rgba(10, 25, 47, 0.8);
-            border: 1px solid #233554; border-radius: 20px; padding: 30px; text-align: center;
-        }
+        .auth-container { max-width: 400px; margin: 40px auto; background: rgba(10, 25, 47, 0.8); border: 1px solid #233554; border-radius: 20px; padding: 30px; text-align: center; }
         .auth-container h2 { color: #00f2fe; margin-bottom: 20px; }
-        .auth-container input {
-            width: 100%; padding: 12px; margin-bottom: 15px; background: #020c1b;
-            border: 1px solid #233554; border-radius: 10px; color: #fff; outline: none;
-        }
+        .auth-container input { width: 100%; padding: 12px; margin-bottom: 15px; background: #020c1b; border: 1px solid #233554; border-radius: 10px; color: #fff; outline: none; }
         .auth-container input:focus { border-color: #00f2fe; }
-        .auth-btn {
-            width: 100%; padding: 12px; background: #00f2fe; color: #020c1b;
-            border: none; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s;
-        }
+        .auth-btn { width: 100%; padding: 12px; background: #00f2fe; color: #020c1b; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s; }
         .auth-btn:hover { box-shadow: 0 0 15px #00f2fe; }
         .toggle-auth { margin-top: 15px; color: #8892b0; font-size: 14px; cursor: pointer; text-decoration: underline; }
 
@@ -47,59 +28,35 @@
         .hero-section h1 { font-size: 2.3em; color: #fff; margin-bottom: 15px; }
         .hero-section p { color: #8892b0; font-size: 16px; margin-bottom: 25px; }
         
-        .game-container {
-            background: rgba(10, 25, 47, 0.6); border: 1px solid #00f2fe; border-radius: 20px;
-            padding: 30px; max-width: 400px; margin: 0 auto 40px auto; box-shadow: 0 0 25px rgba(0, 242, 254, 0.15);
-        }
+        .game-container { background: rgba(10, 25, 47, 0.6); border: 1px solid #00f2fe; border-radius: 20px; padding: 30px; max-width: 400px; margin: 0 auto 40px auto; box-shadow: 0 0 25px rgba(0, 242, 254, 0.15); }
         .balance-text { font-size: 2.5em; font-weight: bold; color: #00f2fe; text-shadow: 0 0 15px rgba(0, 242, 254, 0.4); }
         .user-email-display { color: #8892b0; font-size: 14px; margin-bottom: 10px; }
         
-        .main-btn {
-            width: 150px; height: 150px; border-radius: 50%; background: radial-gradient(circle, #0a192f 0%, #020c1b 100%);
-            border: 4px solid #00f2fe; color: #00f2fe; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s;
-            margin: 20px 0; outline: none;
-        }
+        .main-btn { width: 150px; height: 150px; border-radius: 50%; background: radial-gradient(circle, #0a192f 0%, #020c1b 100%); border: 4px solid #00f2fe; color: #00f2fe; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; margin: 20px 0; outline: none; }
         .main-btn:hover:not(:disabled) { box-shadow: 0 0 40px rgba(0, 242, 254, 0.5); transform: scale(1.02); }
         .main-btn:disabled { border-color: #233554; color: #8892b0; box-shadow: none; cursor: not-allowed; }
         .timer-text { font-size: 16px; color: #ff4a5a; margin-top: 10px; display: none; }
 
-        /* 2X կոճակ */
-        .boost-btn {
-            width: 100%; padding: 12px; margin-top: 15px;
-            background: linear-gradient(135deg, #f7971e, #ffd200);
-            color: #020c1b; border: none; border-radius: 12px;
-            font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s;
-            display: none;
-        }
-        .boost-btn:hover:not(:disabled) { box-shadow: 0 0 20px rgba(255, 210, 0, 0.5); transform: scale(1.02); }
-        .boost-btn:disabled { background: #333; color: #666; cursor: not-allowed; box-shadow: none; }
-        .boost-used-text { font-size: 13px; color: #ffd200; margin-top: 8px; display: none; }
-
-        /* Ռեկլամի Modal */
-        .ad-modal-overlay {
+        /* FULLSCREEN ռեկլամի overlay */
+        .ad-fullscreen {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); z-index: 9999; justify-content: center; align-items: center;
+            background: #020c1b; z-index: 99999; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center; padding: 20px;
         }
-        .ad-modal-overlay.active { display: flex; }
-        .ad-modal {
-            background: #0a192f; border: 1px solid #00f2fe; border-radius: 20px;
-            padding: 30px; max-width: 500px; width: 90%; text-align: center;
+        .ad-fullscreen.active { display: flex; }
+        .ad-fullscreen h2 { color: #ffd200; font-size: 22px; margin-bottom: 10px; }
+        .ad-fullscreen p { color: #8892b0; font-size: 14px; margin-bottom: 20px; }
+        .ad-fullscreen-box { width: 100%; max-width: 600px; margin: 0 auto 20px auto; }
+        .ad-countdown { font-size: 48px; font-weight: bold; color: #00f2fe; margin: 20px 0; }
+        .ad-countdown-label { color: #8892b0; font-size: 14px; margin-bottom: 20px; }
+        .ad-x-btn {
+            width: 60px; height: 60px; border-radius: 50%; background: #ff4a5a;
+            color: #fff; border: none; font-size: 28px; font-weight: bold; cursor: pointer;
+            display: none; margin: 0 auto; transition: 0.3s;
         }
-        .ad-modal h3 { color: #ffd200; margin-bottom: 10px; font-size: 20px; }
-        .ad-modal p { color: #8892b0; font-size: 14px; margin-bottom: 20px; }
-        .ad-box { margin: 15px 0; }
-        .ad-timer { color: #00f2fe; font-size: 18px; font-weight: bold; margin: 15px 0; }
-        .ad-close-btn {
-            width: 100%; padding: 12px; background: #00f2fe; color: #020c1b;
-            border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 16px;
-            display: none; margin-top: 10px;
-        }
+        .ad-x-btn:hover { box-shadow: 0 0 20px rgba(255, 74, 90, 0.6); transform: scale(1.1); }
 
-        .listing-banner {
-            max-width: 1000px; margin: 40px auto; padding: 25px; text-align: center;
-            background: linear-gradient(135deg, rgba(0, 242, 254, 0.1) 0%, rgba(10, 25, 47, 0.7) 100%);
-            border: 1px dashed #00f2fe; border-radius: 15px;
-        }
+        .listing-banner { max-width: 1000px; margin: 40px auto; padding: 25px; text-align: center; background: linear-gradient(135deg, rgba(0, 242, 254, 0.1) 0%, rgba(10, 25, 47, 0.7) 100%); border: 1px dashed #00f2fe; border-radius: 15px; }
         .listing-banner h3 { color: #00f2fe; margin-bottom: 10px; }
         .listing-banner p { color: #ccd6f6; font-size: 15px; }
 
@@ -129,17 +86,21 @@
         </div>
     </header>
 
-    <!-- Ռեկլամի Modal -->
-    <div id="adModalOverlay" class="ad-modal-overlay">
-        <div class="ad-modal">
-            <h3>⚡ 2X Բոնուս</h3>
-            <p>Նայիր ռեկլամը և ստացիր <strong>0.20 REGC</strong> փոխարենը 0.10-ի։</p>
-            <div class="ad-box">
-                <p style="color:#ffd200; font-size:15px;">📢 Ռեկլամը բացվում է նոր պատուհանում։<br>Նայիր 15 վայրկյան, հետո վերադարձիր։</p>
+    <!-- FULLSCREEN ռեկլամ -->
+    <div id="adFullscreen" class="ad-fullscreen">
+        <h2>⛏️ Mining...</h2>
+        <p>Նայիր ռեկլամը մինչև հաշվիչը լրանա</p>
+        <div class="ad-fullscreen-box">
+            <!-- BEGIN AADS AD UNIT 2445886 -->
+            <div style="width:100%;margin:auto;position:relative;">
+                <iframe data-aa='2445886' src='//acceptable.a-ads.com/2445886/?size=Adaptive'
+                    style='border:0;padding:0;width:100%;height:250px;overflow:hidden;display:block;margin:auto'></iframe>
             </div>
-            <div id="adTimerText" class="ad-timer">Սպասիր՝ <span id="adCountdown">15</span> վայրկյան</div>
-            <button id="adCloseBtn" class="ad-close-btn">✅ Ստացա 2X Բոնուս</button>
+            <!-- END AADS AD UNIT 2445886 -->
         </div>
+        <div class="ad-countdown" id="adCountdown">15</div>
+        <div class="ad-countdown-label">վայրկյան</div>
+        <button id="adXBtn" class="ad-x-btn">✕</button>
     </div>
 
     <div id="authBlock" class="auth-container">
@@ -160,20 +121,8 @@
                 <div class="balance-text"><span id="balance">0.00</span> REGC</div>
                 <button id="claimBtn" class="main-btn">MINE / CLAIM</button>
                 <div id="timerDisplay" class="timer-text">Հաջորդ սեղմումը՝ 24:00:00</div>
-                <button id="boostBtn" class="boost-btn">⚡ Նայել Ռեկլամ → 2X (0.20 REGC)</button>
-                <div id="boostUsedText" class="boost-used-text">✅ 2X բոնուսն արդեն օգտագործված է</div>
             </div>
         </section>
-
-        <!-- A-Ads ռեկլամ -->
-        <div style="max-width:700px; margin: 20px auto; text-align:center;">
-            <!-- BEGIN AADS AD UNIT 2445886 -->
-            <div style="width:100%;margin:auto;position:relative;z-index:99998;">
-                <iframe data-aa='2445886' src='//acceptable.a-ads.com/2445886/?size=Adaptive'
-                    style='border:0;padding:0;width:100%;height:auto;overflow:hidden;display:block;margin:auto'></iframe>
-            </div>
-            <!-- END AADS AD UNIT 2445886 -->
-        </div>
 
         <div class="listing-banner">
             <h3>🚀 Մոտ Ապագայում՝ Լիստինգ Բորսաներում</h3>
@@ -241,19 +190,16 @@
         const claimBtn = document.getElementById('claimBtn');
         const balanceDisplay = document.getElementById('balance');
         const timerDisplay = document.getElementById('timerDisplay');
-        const boostBtn = document.getElementById('boostBtn');
-        const boostUsedText = document.getElementById('boostUsedText');
-        const adModalOverlay = document.getElementById('adModalOverlay');
-        const adCloseBtn = document.getElementById('adCloseBtn');
+        const adFullscreen = document.getElementById('adFullscreen');
         const adCountdown = document.getElementById('adCountdown');
-        const adTimerText = document.getElementById('adTimerText');
+        const adXBtn = document.getElementById('adXBtn');
 
         let currentUser = null;
         let isSignUpMode = false;
         let timerInterval = null;
         let adInterval = null;
+        let pendingClaim = false;
 
-        // Auth toggle
         toggleAuthMode.addEventListener('click', () => {
             isSignUpMode = !isSignUpMode;
             if (isSignUpMode) {
@@ -275,9 +221,7 @@
                 createUserWithEmailAndPassword(auth, email, password)
                     .then((userCredential) => {
                         const userId = userCredential.user.uid;
-                        set(ref(database, 'users/' + userId), {
-                            email: email, balance: 0.00, nextClaimTime: 0, boostUsed: false
-                        });
+                        set(ref(database, 'users/' + userId), { email: email, balance: 0.00, nextClaimTime: 0 });
                     })
                     .catch((error) => alert("Գրանցման սխալ: " + error.message));
             } else {
@@ -298,7 +242,6 @@
                 mainContent.style.display = 'block';
                 logoutBtn.style.display = 'block';
                 userEmailDisplay.innerText = user.email;
-
                 const userRef = ref(database, 'users/' + user.uid);
                 get(userRef).then((snapshot) => {
                     if (snapshot.exists()) {
@@ -307,7 +250,7 @@
                         const nextClaimTime = data.nextClaimTime || 0;
                         const now = Date.now();
                         if (now < nextClaimTime) {
-                            setupMinedState(nextClaimTime, data.boostUsed || false);
+                            setupMinedState(nextClaimTime);
                         } else {
                             setupReadyState();
                         }
@@ -323,7 +266,7 @@
             }
         });
 
-        // MINE կոճակ — տալիս է 0.10
+        // MINE սեղմելիս — բացվում է fullscreen ռեկլամ
         claimBtn.addEventListener('click', () => {
             if (!currentUser) return;
             const userRef = ref(database, 'users/' + currentUser.uid);
@@ -332,82 +275,54 @@
                     const data = snapshot.val();
                     const now = Date.now();
                     if (now >= (data.nextClaimTime || 0)) {
-                        const newBalance = (data.balance || 0) + 0.10;
-                        const newNextClaimTime = now + (24 * 60 * 60 * 1000);
-                        update(userRef, {
-                            balance: newBalance,
-                            nextClaimTime: newNextClaimTime,
-                            boostUsed: false
-                        }).then(() => {
-                            balanceDisplay.innerText = newBalance.toFixed(2);
-                            setupMinedState(newNextClaimTime, false);
-                        });
+                        pendingClaim = true;
+                        openAdFullscreen();
                     }
                 }
             });
         });
 
-        // 2X կոճակ — բացում է ռեկլամ
-        boostBtn.addEventListener('click', () => {
-            openAdModal();
+        // ✕ սեղմելիս — balance-ը թարմացվում է
+        adXBtn.addEventListener('click', () => {
+            adFullscreen.classList.remove('active');
+            if (adInterval) clearInterval(adInterval);
+            if (!pendingClaim || !currentUser) return;
+            pendingClaim = false;
+            const userRef = ref(database, 'users/' + currentUser.uid);
+            get(userRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    const newBalance = (data.balance || 0) + 0.10;
+                    const newNextClaimTime = Date.now() + (24 * 60 * 60 * 1000);
+                    update(userRef, { balance: newBalance, nextClaimTime: newNextClaimTime }).then(() => {
+                        balanceDisplay.innerText = newBalance.toFixed(2);
+                        setupMinedState(newNextClaimTime);
+                    });
+                }
+            });
         });
 
-        function openAdModal() {
-            // Բացում ենք ռեկլամը նոր tab-ում
-            window.open('https://a-ads.com/campaigns/new?partner=2445875', '_blank');
-            
-            adModalOverlay.classList.add('active');
-            adCloseBtn.style.display = 'none';
-            adTimerText.style.display = 'block';
+        function openAdFullscreen() {
+            adFullscreen.classList.add('active');
+            adXBtn.style.display = 'none';
+            adCountdown.innerText = 15;
             let seconds = 15;
-            adCountdown.innerText = seconds;
             if (adInterval) clearInterval(adInterval);
             adInterval = setInterval(() => {
                 seconds--;
                 adCountdown.innerText = seconds;
                 if (seconds <= 0) {
                     clearInterval(adInterval);
-                    adTimerText.style.display = 'none';
-                    adCloseBtn.style.display = 'block';
+                    adXBtn.style.display = 'block';
+                    adCountdown.innerText = '✓';
                 }
             }, 1000);
         }
 
-        // Ռեկլամ նայելուց հետո — +0.10 ավելացնել (ընդհանուր 0.20)
-        adCloseBtn.addEventListener('click', () => {
-            adModalOverlay.classList.remove('active');
-            if (!currentUser) return;
-            const userRef = ref(database, 'users/' + currentUser.uid);
-            get(userRef).then((snapshot) => {
-                if (snapshot.exists()) {
-                    const data = snapshot.val();
-                    const newBalance = (data.balance || 0) + 0.10; // +0.10 ավել (ընդհամենը 0.20)
-                    update(userRef, {
-                        balance: newBalance,
-                        boostUsed: true
-                    }).then(() => {
-                        balanceDisplay.innerText = newBalance.toFixed(2);
-                        boostBtn.style.display = 'none';
-                        boostUsedText.style.display = 'block';
-                    });
-                }
-            });
-        });
-
-        function setupMinedState(nextTime, boostUsed) {
+        function setupMinedState(nextTime) {
             claimBtn.disabled = true;
             claimBtn.innerText = "⛏️ Mined";
             timerDisplay.style.display = "block";
-
-            // 2X կոճակի ցուցադրություն
-            if (boostUsed) {
-                boostBtn.style.display = 'none';
-                boostUsedText.style.display = 'block';
-            } else {
-                boostBtn.style.display = 'block';
-                boostUsedText.style.display = 'none';
-            }
-
             if (timerInterval) clearInterval(timerInterval);
             startTimer(nextTime);
         }
@@ -416,8 +331,6 @@
             claimBtn.disabled = false;
             claimBtn.innerText = "MINE / CLAIM";
             timerDisplay.style.display = "none";
-            boostBtn.style.display = 'none';
-            boostUsedText.style.display = 'none';
         }
 
         function startTimer(nextTime) {
